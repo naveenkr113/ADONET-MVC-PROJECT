@@ -11,7 +11,7 @@ namespace ADONET_MVC_PROJECT.DAL
 {
     public class employeerepository:clscon
     {
-        employee ab = new employee();
+       
 
         public void Save_Rec(employee emp)
         {
@@ -20,10 +20,10 @@ namespace ADONET_MVC_PROJECT.DAL
                 con.Open();
             }
             SqlCommand cmd = new SqlCommand("insert into employee values(@eno, @en, @esal, @eadd)",con);
-            cmd.Parameters.AddWithValue("@eno", ab.empno);
-            cmd.Parameters.AddWithValue("en", ab.empnam);
-            cmd.Parameters.AddWithValue("esal", ab.empsal);
-            cmd.Parameters.AddWithValue("eadd", ab.empadd);
+            cmd.Parameters.AddWithValue("@eno", emp.empno);
+            cmd.Parameters.AddWithValue("en", emp.empnam);
+            cmd.Parameters.AddWithValue("esal", emp.empsal);
+            cmd.Parameters.AddWithValue("eadd", emp.empadd);
             cmd.ExecuteNonQuery();
             cmd.Dispose();
             con.Close();
@@ -38,11 +38,10 @@ namespace ADONET_MVC_PROJECT.DAL
             }
             SqlCommand cmd = new SqlCommand("select*from employee",con);
             SqlDataReader dr = cmd.ExecuteReader();
-
             List<employee> obj = new List<employee>();
             while (dr.Read())
             {
-              
+                employee ab = new employee();
                 ab.empno = Convert.ToInt32(dr[0]);
                 ab.empnam = dr[1].ToString();
                 ab.empsal = Convert.ToInt32(dr[2]);
