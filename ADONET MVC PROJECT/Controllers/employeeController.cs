@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ADONET_MVC_PROJECT.DAL;
+using ADONET_MVC_PROJECT.Models;
 
 
 using System.Configuration;
@@ -26,7 +27,11 @@ namespace ADONET_MVC_PROJECT.Controllers
         // GET: employee/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            
+                var sss = rep.Find_Rec(id);
+                return View(sss);
+            
+           
         }
 
         // GET: employee/Create
@@ -37,11 +42,11 @@ namespace ADONET_MVC_PROJECT.Controllers
 
         // POST: employee/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(employee emp)
         {
             try
             {
-                // TODO: Add insert logic here
+                rep.Save_Rec(emp);
 
                 return RedirectToAction("Index");
             }
@@ -54,16 +59,17 @@ namespace ADONET_MVC_PROJECT.Controllers
         // GET: employee/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var sss = rep.Find_Rec(id);
+            return View(sss);
         }
 
         // POST: employee/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(employee emp)
         {
             try
             {
-                // TODO: Add update logic here
+                rep.Update_Rec(emp);
 
                 return RedirectToAction("Index");
             }
