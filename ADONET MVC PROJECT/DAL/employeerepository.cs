@@ -96,5 +96,17 @@ namespace ADONET_MVC_PROJECT.DAL
             cmd.Dispose();
             con.Close();
         }
+        public void Delete_Rec(int id)
+        {
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
+            SqlCommand cmd = new SqlCommand("delete from employee where empid=@eid", con);
+            cmd.Parameters.AddWithValue("eid", id);
+            cmd.ExecuteNonQuery();
+            cmd.Dispose();
+            con.Close();
+        }
     }
 }

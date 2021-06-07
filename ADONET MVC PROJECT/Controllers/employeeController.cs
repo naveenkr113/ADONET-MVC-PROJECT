@@ -82,16 +82,16 @@ namespace ADONET_MVC_PROJECT.Controllers
         // GET: employee/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(rep.Find_Rec(id));
         }
 
         // POST: employee/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, employee emp)
         {
             try
             {
-                // TODO: Add delete logic here
+                rep.Delete_Rec(id);
 
                 return RedirectToAction("Index");
             }
